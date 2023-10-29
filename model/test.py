@@ -1,21 +1,18 @@
 import cv2,os
 from easyocr import Reader
 from flask import current_app as app,redirect,url_for
+from .word_segmentation import thresholding,dilation,contours,segmenting
 
 font=cv2.FONT_HERSHEY_SIMPLEX
 fontscale=1
 color=(40, 100, 250)
 thickness=2
-from word_segmentation import thresholding,dilation,contours,segmenting
-path=""
-img=cv2.imread(path)
 
 langs=["en"]
-print("Languages to be parsed",langs)
+# print("Languages to be parsed",langs)
 
 reader=Reader(langs,gpu=True)
 
-@app.route("/display/<filename>",method=['GET'])
 def display_output(filename):
     img=cv2.imread("static/uploads/" + filename)
     img=cv2.cvtColor(img,cv2.COLOR_BGR2RGB)
@@ -41,5 +38,6 @@ def display_output(filename):
             x,y=listOfWords[i][0],listOfWords[i][1]
             cv2.putText(img,word,(x-1,y-1),font,fontscale,color,thickness,cv2.LINE_AA)
 
-        cv2.imwrite("output/"+filename,img)
-    return redirect(url_for('output',filename='uploads/' + filename),code=301)
+        cv2.imwrite(os.path.join("static\output",filename),img)
+    print("Image Saved")
+

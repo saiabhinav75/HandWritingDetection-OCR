@@ -1,6 +1,7 @@
 import cv2
 import numpy as np,matplotlib.pyplot as plt
 
+# image=cv2.imread(r"static\uploads\handwritten3.jpg")
 def thresholding(image):
     img_gray=cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
     ret,thresh=cv2.threshold(img_gray,80,255,cv2.THRESH_BINARY_INV)
@@ -28,3 +29,10 @@ def segmenting(img,contour_lines):
         listOfWords.append([x,y,x+w,y+h])
     return listOfWords
 
+# thresh_img=thresholding(image.copy())
+# dilated=dilation(thresh_img.copy())
+# contour_lines=contours(dilated.copy())
+# listOfWords=segmenting(image,contour_lines)
+# print(listOfWords)
+# plt.imshow(listOfWords)
+# plt.show()

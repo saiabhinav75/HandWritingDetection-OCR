@@ -5,7 +5,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 </head>
 <body>
-<p><h1 align="center">Python Flask Upload and display image</h1></p>
+<p><h1 align="center">Hand Writing Recognization</h1></p>
 <div class="container">
 <div class="row">
     <h2>Select a file to upload</h2>
@@ -22,20 +22,9 @@
     </p>
     {% if filename %}
         <div>
-            <img src="{{ url_for('image_display', filename=filename) }}">
-        </div>
-        <div>
-            <form method="post" action="/display/"+>
-                <dl>
-                    <p>
-                        <input type="submit" value="GetText" class="btn btn-display">
-                    </p>
-                </dl>
-            </form>
-            
-        </div>
+            <img src={{ url_for ( 'image_display', filename=filename) }}>
+        </div> 
     {% endif %}
-    {% else %}
     <form method="post" action="/" enctype="multipart/form-data">
         <dl>
             <p>
@@ -46,7 +35,6 @@
             <input type="submit" value="Submit" class="btn btn-info">
         </p>
     </form>
-    {% endelse %}
 </div>
 </div>
 </body>
